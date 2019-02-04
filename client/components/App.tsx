@@ -1,29 +1,39 @@
 import * as React from "react";
 import "./App.scss";
 import "antd/dist/antd.css";
-import { Layout, Row, Col } from "antd";
+import { Layout, Row, Col, Input, Button } from "antd";
 const { Content } = Layout;
 
-// Components
-import SearchForm from "./search-form/SearchForm";
-import Gallery from "./gallery/Gallery";
+import TodoList from "./todo-list/TodoList";
 
-interface IProps {}
+interface IProps {
+
+}
 
 interface IState {
-  galleryItems: IMGUR.GalleryItem[];
+  inputValue: string
+  todoList: string[]
 }
 
 class App extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
-      galleryItems: []
+      inputValue: "",
+      todoList: [
+        "Walk dog",
+        "Make dinner"
+      ]
     };
   }
 
-  setImages(galleryItems: IMGUR.GalleryItem[]) {
-    this.setState({ galleryItems });
+  addTodo() {
+    let currentTodos = this.state.todoList;
+    currentTodos.push(this.state.inputValue);
+    this.setState({
+      inputValue: "",
+      todoList: currentTodos
+    });
   }
 
   render() {
@@ -31,14 +41,17 @@ class App extends React.Component<IProps, IState> {
       <Layout className="layout">
         <Content className="content">
           <Row>
-            <Col sm={24} md={8}>
-              <h2>Image Searcher</h2>
-            </Col>
-            <Col sm={24} md={16}>
-              <SearchForm onSearchResults={images => this.setImages(images)} />
+            <Col>
+              <Input
+                style={{ width: "300px", marginRight: "10px" }}
+                placeholder="Add a new ToDo"
+                value={this.state.inputValue}
+                onChange={event => this.setState({ inputValue: event.target.value })}
+              />
+              <Button onClick={() => this.addTodo()}>Add Todo</Button>
             </Col>
           </Row>
-          <Gallery galleryItems={this.state.galleryItems} />
+          <TodoList todoList={this.state.todoList}/>
         </Content>
       </Layout>
     );
