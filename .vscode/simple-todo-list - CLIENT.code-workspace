@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"name": "client",
+			"path": "../client",
+			"icon": "flder"
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			".vscode": true,
+			"node_modules/": true,
+			".tscache": true,
+			"client": true,
+			"dist": true,
+			"server": true,
+			"Procfile": true,
+			"package-lock.json": true,
+			".gitignore": true,
+			".env": true
+		}
+	}
+}
