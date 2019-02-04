@@ -1,0 +1,39 @@
+@import "../util/scss/variables.scss";
+
+.layout {
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layout > .content {
+  background-color: #fff;
+  width: calc(100% - 80px);
+  max-width: 800px;
+  max-height: calc(100vh - 80px);
+  padding: 20px;
+  border-radius: 5px;
+  overflow-y: scroll;
+}
+
+// For Mobile Devices
+@include media-breakpoint-down(xs) {
+  .layout {
+    height: 100vh;
+    max-height: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .layout > .content {
+    background-color: #fff;
+    width: 100%;
+    max-width: none;
+    max-height: none;
+  }
+}
